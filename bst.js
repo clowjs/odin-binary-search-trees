@@ -240,43 +240,40 @@ class Tree {
   
 }
 
-const array = [5, 4, 6, 3, 2, 1, 0, 30, 25, 39, 99];
+function randomArray(size = 10, max = 100) {
+  return Array.from({ length: size }, () => Math.floor(Math.random() * max));
+}
+
+const array = randomArray();
+console.log(array);
+
 const tree = new Tree(array);
+tree.prettyPrint();
+
+console.log(`Is balanced: ${tree.isBalanced()}`);
+console.log(`Elements in level order: ${tree.levelOrder()}`);
+console.log(`Elements in pre-order: ${tree.preOrder()}`);
+console.log(`Elements in post-order: ${tree.postOrder()}`);
+console.log(`Elements in in-order: ${tree.inOrder()}`);
+
+tree.insert(101);
+tree.insert(102);
+tree.insert(150);
+tree.insert(200);
+tree.insert(250);
+tree.insert(300);
+tree.insert(400);
 
 tree.prettyPrint();
 
-tree.insert(7);
-tree.insert(-7);
-tree.insert(11);
+console.log(`Is balanced: ${tree.isBalanced()}`);
+
+tree.rebalance();
 
 tree.prettyPrint();
 
-tree.deleteItem(5);
-tree.prettyPrint();
-
-tree.deleteItem(25);
-tree.prettyPrint();
-
-tree.deleteItem(99);
-tree.prettyPrint();
-
-console.log(tree.find(7));
-
-// tree.levelOrder((node) => console.log(node.data));
-// console.log(tree.levelOrder());
-
-// tree.inOrder((node) => console.log(node.data));
-// console.log(tree.inOrder());
-
-// tree.preOrder((node) => console.log(node.data));
-// console.log(tree.preOrder());
-
-// tree.postOrder((node) => console.log(node.data));
-// console.log(tree.postOrder());
-
-console.log(tree.height(tree.find(7)));
-console.log(tree.height(tree.find(7)));
-
-console.log(tree.depth(tree.find(7)));
-
-console.log(tree.isBalanced());
+console.log(`Is balanced: ${tree.isBalanced()}`);
+console.log(`Elements in level order: ${tree.levelOrder()}`);
+console.log(`Elements in pre-order: ${tree.preOrder()}`);
+console.log(`Elements in post-order: ${tree.postOrder()}`);
+console.log(`Elements in in-order: ${tree.inOrder()}`);
