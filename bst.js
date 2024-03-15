@@ -157,6 +157,24 @@ class Tree {
     if (values.length) return values;
   }
 
+  preOrder(callback = null) {
+    let values = [];
+
+    function traverse(node) {
+      if (callback) {
+        callback(node);
+      } else {
+        values.push(node.data);
+      }
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(this.root);
+
+    if (values.length) return values;
+  }
+
   
 }
 
@@ -185,5 +203,8 @@ console.log(tree.find(7));
 // tree.levelOrder((node) => console.log(node.data));
 // console.log(tree.levelOrder());
 
-tree.inOrder((node) => console.log(node.data));
-console.log(tree.inOrder());
+// tree.inOrder((node) => console.log(node.data));
+// console.log(tree.inOrder());
+
+tree.preOrder((node) => console.log(node.data));
+console.log(tree.preOrder());
