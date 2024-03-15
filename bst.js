@@ -97,6 +97,23 @@ class Tree {
     return current.data;
   }
 
+  find(value) {
+    let current = this.root;
+
+    while (current) {
+      if (value === current.data) {
+        return current;
+      }
+
+      if (value < current.data) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return null;
+  }
+
   
 }
 
@@ -116,3 +133,8 @@ tree.prettyPrint();
 
 tree.deleteItem(25);
 tree.prettyPrint();
+
+tree.deleteItem(99);
+tree.prettyPrint();
+
+console.log(tree.find(7));
