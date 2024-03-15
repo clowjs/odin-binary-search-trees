@@ -193,6 +193,50 @@ class Tree {
     if (values.length) return values;
   }
 
+  height(node = this.root) {
+    if (!node) return -1;
+
+    let left = this.height(node.left);
+    let right = this.height(node.right);
+
+    return Math.max(left, right) + 1;
+  
+  }
+
+  depth(node) {
+    if (node === this.root) return 0;
+
+    let current = this.root;
+    let depth = 0;
+
+    while (current) {
+      if (node.data === current.data) {
+        return depth;
+      }
+
+      if (node.data < current.data) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+
+      depth++;
+    }
+  }
+
+  isBalanced() {
+    let left = this.height(this.root.left);
+    let right = this.height(this.root.right);
+
+    return Math.abs(left - right) <= 1;
+  
+  }
+
+  rebalance() {
+    let values = this.inOrder();
+    this.root = this.buildTree(values);
+  }
+
   
 }
 
@@ -227,5 +271,12 @@ console.log(tree.find(7));
 // tree.preOrder((node) => console.log(node.data));
 // console.log(tree.preOrder());
 
-tree.postOrder((node) => console.log(node.data));
-console.log(tree.postOrder());
+// tree.postOrder((node) => console.log(node.data));
+// console.log(tree.postOrder());
+
+console.log(tree.height(tree.find(7)));
+console.log(tree.height(tree.find(7)));
+
+console.log(tree.depth(tree.find(7)));
+
+console.log(tree.isBalanced());
