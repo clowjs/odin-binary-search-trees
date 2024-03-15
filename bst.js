@@ -114,6 +114,31 @@ class Tree {
     return null;
   }
 
+  levelOrder(callback = null) {
+    let queue = [this.root];
+    let values = [];
+
+    while (queue.length) {
+      let node = queue.shift();
+
+      if (callback) {
+        callback(node);
+      } else {
+        values.push(node.data);
+      }
+
+      if (node.left) {
+        queue.push(node.left);
+      }
+
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+
+    if (values.length) return values;
+  }
+
   
 }
 
@@ -138,3 +163,6 @@ tree.deleteItem(99);
 tree.prettyPrint();
 
 console.log(tree.find(7));
+
+tree.levelOrder((node) => console.log(node.data));
+console.log(tree.levelOrder());
